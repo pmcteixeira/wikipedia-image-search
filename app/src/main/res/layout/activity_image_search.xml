@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/white"
+				tools:context=".ImageSearchActivity">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:elevation="5dp"
+		android:minHeight="?attr/actionBarSize"
+		android:background="?attr/colorPrimary" />
+
+	<EditText
+		android:id="@+id/searchEditText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/activity_horizontal_margin"
+		android:layout_marginRight="@dimen/activity_horizontal_margin"
+		android:layout_marginTop="@dimen/default_vertical_margin"
+		android:layout_below="@id/toolbar"
+		android:textColor="@color/black"
+		android:textColorHint="@color/grey"
+		android:imeOptions="actionDone"
+		android:singleLine="true"
+		android:hint="@string/search_hint"/>
+
+	<GridView
+		android:id="@+id/gridView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/searchEditText"
+		android:layout_marginTop="@dimen/default_vertical_margin"
+		android:paddingLeft="2dp"
+		android:paddingRight="2dp"
+		android:numColumns="3"
+		android:verticalSpacing="4dp"
+		android:horizontalSpacing="4dp"
+		android:stretchMode="columnWidth"
+		android:gravity="center"/>
+
+</RelativeLayout>
