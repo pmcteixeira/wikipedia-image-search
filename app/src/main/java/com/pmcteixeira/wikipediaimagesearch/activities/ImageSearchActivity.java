@@ -17,6 +17,8 @@ import com.pmcteixeira.wikipediaimagesearch.backend.pojos.Page;
 import com.pmcteixeira.wikipediaimagesearch.backend.pojos.Result;
 import com.pmcteixeira.wikipediaimagesearch.backend.pojos.WikiImgsResponse;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit.Callback;
@@ -77,11 +79,11 @@ public class ImageSearchActivity extends ActionBarActivity {
 				mPageListResult = query.getPages().getPageList();
 
 				// Sort pages by index
-//				Collections.sort(mPageListResult, new Comparator<Page>() {
-//					public int compare(Page o1, Page o2) {
-//						return o1.getIndex().compareTo(o2.getIndex());
-//					}
-//				});
+				Collections.sort(mPageListResult, new Comparator<Page>() {
+					public int compare(Page o1, Page o2) {
+						return o1.getIndex().compareTo(o2.getIndex());
+					}
+				});
 
 				mImageGridViewAdapter.updateList(mPageListResult);
 				mImageGridViewAdapter.notifyDataSetChanged();

@@ -90,7 +90,7 @@ public class ImageGridViewAdapter extends BaseAdapter {
 
 					Picasso.with(mContext)
 							.load(page.getThumbnail().getSource())
-							.placeholder(R.drawable.placeholder)
+//							.placeholder(R.drawable.placeholder) // This is slowing down scroll
 							.fit()
 							.noFade()
 							.into(viewHolder.thumbnail);
