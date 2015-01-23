@@ -6,8 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.pmcteixeira.wikipediaimagesearch.R;
 import com.pmcteixeira.wikipediaimagesearch.adapters.ImageGridViewAdapter;
@@ -37,6 +39,7 @@ public class ImageSearchActivity extends ActionBarActivity {
 	private Toolbar mToolbar;
 	private EditText mEditText;
 	private GridView mGridView;
+	private ImageView noImagesPlaceHolder;
 	private ImageGridViewAdapter mImageGridViewAdapter;
 	private WikipediaImagesClient mWikiClient;
 	private List<Page> mPageListResult;
@@ -78,7 +81,15 @@ public class ImageSearchActivity extends ActionBarActivity {
 	}
 
 	private void performImageQuery(String query) {
-		mWikiClient.getImages(query, IMAGE_RESULT_COUNT, mWikiImageSearchCallback);
+
+		if(query == null || "".equals(query)) {
+			mGridView.setVisibility(View.GONE);
+			noImagesPlaceHolder.setVisibility(View.VISIBLE);
+		} else {
+			noImagesPlaceHolder.setVisibility(View.GONE);
+			mGridView.setVisibility(View.VISIBLE);
+			mWikiClient.getImages(query, IMAGE_RESULT_COUNT, mWikiImageSearchCallback);
+		}
 	}
 
 	protected void widgetsInit() {
@@ -94,6 +105,8 @@ public class ImageSearchActivity extends ActionBarActivity {
 
 		mEditText = (EditText) findViewById(R.id.searchEditText);
 		mEditText.addTextChangedListener(mEditTextWatcher);
+
+		noImagesPlaceHolder = (ImageView) findViewById(R.id.no_images_placeholder);
 	}
 
 	Callback<WikiImgsResponse> mWikiImageSearchCallback = new Callback<WikiImgsResponse>() {

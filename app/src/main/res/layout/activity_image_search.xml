@@ -41,4 +41,11 @@
 		android:stretchMode="columnWidth"
 		android:gravity="center"/>
 
+	<ImageView
+		android:id="@+id/no_images_placeholder"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:src="@drawable/no_images_placeholder"/>
+
 </RelativeLayout>
