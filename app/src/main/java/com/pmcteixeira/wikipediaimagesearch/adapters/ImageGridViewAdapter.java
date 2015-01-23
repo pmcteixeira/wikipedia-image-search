@@ -5,12 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pmcteixeira.wikipediaimagesearch.R;
 import com.pmcteixeira.wikipediaimagesearch.backend.pojos.Page;
+import com.pmcteixeira.wikipediaimagesearch.views.SquareImageView;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,7 +73,7 @@ public class ImageGridViewAdapter extends BaseAdapter {
 
 			ViewHolder viewHolder = new ViewHolder();
 			viewHolder.caption = (TextView) gridItemView.findViewById(R.id.caption);
-			viewHolder.thumbnail = (ImageView) gridItemView.findViewById(R.id.thumbnail);
+			viewHolder.thumbnail = (SquareImageView) gridItemView.findViewById(R.id.thumbnail);
 
 			gridItemView.setTag(viewHolder);
 		} else {
@@ -90,10 +91,7 @@ public class ImageGridViewAdapter extends BaseAdapter {
 
 					Picasso.with(mContext)
 							.load(page.getThumbnail().getSource())
-//							.placeholder(R.drawable.placeholder) // This is slowing down scroll
-							.fit()
-							.noFade()
-							.into(viewHolder.thumbnail);
+							.into((Target) viewHolder.thumbnail);
 				} else {
 					// Image place holder
 					viewHolder.thumbnail.setImageResource(R.drawable.placeholder);
@@ -105,7 +103,7 @@ public class ImageGridViewAdapter extends BaseAdapter {
 	}
 
 	protected class ViewHolder {
-		public ImageView thumbnail;
+		public SquareImageView thumbnail;
 		public TextView caption;
 	}
 }

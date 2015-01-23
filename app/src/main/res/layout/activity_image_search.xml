@@ -33,11 +33,11 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/searchEditText"
 		android:layout_marginTop="@dimen/default_vertical_margin"
-		android:paddingLeft="2dp"
-		android:paddingRight="2dp"
+		android:paddingLeft="@dimen/grid_spacing"
+		android:paddingRight="@dimen/grid_spacing"
 		android:numColumns="3"
-		android:verticalSpacing="4dp"
-		android:horizontalSpacing="4dp"
+		android:verticalSpacing="@dimen/grid_spacing"
+		android:horizontalSpacing="@dimen/grid_spacing"
 		android:stretchMode="columnWidth"
 		android:gravity="center"/>
 

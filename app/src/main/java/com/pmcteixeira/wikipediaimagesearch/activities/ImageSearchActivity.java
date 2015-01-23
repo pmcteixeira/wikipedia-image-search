@@ -30,7 +30,10 @@ public class ImageSearchActivity extends ActionBarActivity {
 
 	private final String TAG = ImageSearchActivity.class.getSimpleName();
 
+	private final String QUERY_STATE_KEY = "query";
 	private final int TEXT_CHANGED_MIN_DELAY = 400;  // ms
+	private final int IMAGE_RESULT_COUNT = 50;
+
 	private Toolbar mToolbar;
 	private EditText mEditText;
 	private GridView mGridView;
@@ -48,11 +51,34 @@ public class ImageSearchActivity extends ActionBarActivity {
 		mWikiClient = new RetrofitService().createService(WikipediaImagesClient.class);
 
 		widgetsInit();
+
+		// Maintain result after rotate
+		if(savedInstanceState != null) {
+			String query = savedInstanceState.getString(QUERY_STATE_KEY, null);
+			if(query != null) {
+				performImageQuery(query);
+			}
+		}
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+	}
+
+	/**
+	 * Save all appropriate fragment state.
+	 *
+	 * @param outState
+	 */
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putString(QUERY_STATE_KEY, mEditText.getText().toString());
+	}
+
+	private void performImageQuery(String query) {
+		mWikiClient.getImages(query, IMAGE_RESULT_COUNT, mWikiImageSearchCallback);
 	}
 
 	protected void widgetsInit() {
@@ -120,10 +146,7 @@ public class ImageSearchActivity extends ActionBarActivity {
 			}
 
 			if(System.currentTimeMillis() - mTextChangedTimeStamp >= TEXT_CHANGED_MIN_DELAY) {
-
-				String query = s.toString();
-				int limit = 50;
-				mWikiClient.getImages(query, limit, mWikiImageSearchCallback);
+				performImageQuery(s.toString());
 			}
 		}
 	};

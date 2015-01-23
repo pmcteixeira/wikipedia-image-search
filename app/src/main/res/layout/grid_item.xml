@@ -4,32 +4,29 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content">
 
-	<ImageView
+	<com.pmcteixeira.wikipediaimagesearch.views.SquareImageView
 		android:id="@+id/thumbnail"
-		android:layout_width="wrap_content"
-		android:layout_height="192dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:scaleType="centerCrop"
 		tools:src="@drawable/placeholder"/>
 
-	<FrameLayout
-		android:id="@+id/caption_container"
+
+	<TextView
+		android:id="@+id/caption"
 		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		android:layout_height="48dp"
-		android:background="@color/black_semi_transparent">
-
-		<TextView
-			android:id="@+id/caption"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_vertical"
-			android:textColor="@color/white"
-			android:lines="1"
-			android:ellipsize="end"
-			android:textSize="@dimen/grid_item_text_size"
-			android:paddingLeft="@dimen/grid_item_left_padding"
-			tools:text="Caption"/>
-
-	</FrameLayout>
+		android:paddingTop="@dimen/grid_item_top_padding"
+		android:paddingBottom="@dimen/grid_item_bottom_padding"
+		android:layout_gravity="center_vertical"
+		android:background="@color/black_semi_transparent"
+		android:ellipsize="end"
+		android:gravity="center_vertical"
+		android:lines="1"
+		android:paddingLeft="@dimen/grid_item_left_padding"
+		android:textColor="@color/white"
+		android:textSize="@dimen/grid_item_text_size"
+		tools:text="Caption"/>
 
 </RelativeLayout>
