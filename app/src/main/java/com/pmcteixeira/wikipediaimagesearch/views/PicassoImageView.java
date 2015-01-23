@@ -2,11 +2,14 @@ package com.pmcteixeira.wikipediaimagesearch.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.pmcteixeira.wikipediaimagesearch.R;
+import com.pmcteixeira.wikipediaimagesearch.drawables.FadeInDrawable;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -17,6 +20,8 @@ import com.squareup.picasso.Target;
  * Time: 01:58
  */
 public class PicassoImageView extends ImageView implements Target {
+
+	private static final int FADE_DURATION = 300; //ms
 
 	public PicassoImageView(Context context) {
 		super(context);
@@ -40,7 +45,19 @@ public class PicassoImageView extends ImageView implements Target {
 	 */
 	@Override
 	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-		setImageBitmap(bitmap);
+
+		Drawable nextDrawabe = new BitmapDrawable(getResources(), bitmap);
+		Drawable currentDrawable = getDrawable();
+
+		if(currentDrawable != null) {
+			Drawable[] layers = new Drawable[] {currentDrawable, nextDrawabe};
+			TransitionDrawable crossFade = new TransitionDrawable(layers);
+			setImageDrawable(crossFade);
+			crossFade.startTransition(FADE_DURATION);
+		} else {
+			FadeInDrawable fadeInDrawable = new FadeInDrawable(getResources(), bitmap);
+			setImageDrawable(fadeInDrawable);
+		}
 	}
 
 	/**
