@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.pmcteixeira.wikipediaimagesearch.R;
 import com.pmcteixeira.wikipediaimagesearch.backend.pojos.Page;
-import com.pmcteixeira.wikipediaimagesearch.views.SquareImageView;
+import com.pmcteixeira.wikipediaimagesearch.views.PicassoImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -73,7 +73,7 @@ public class ImageGridViewAdapter extends BaseAdapter {
 
 			ViewHolder viewHolder = new ViewHolder();
 			viewHolder.caption = (TextView) gridItemView.findViewById(R.id.caption);
-			viewHolder.thumbnail = (SquareImageView) gridItemView.findViewById(R.id.thumbnail);
+			viewHolder.thumbnail = (PicassoImageView) gridItemView.findViewById(R.id.thumbnail);
 
 			gridItemView.setTag(viewHolder);
 		} else {
@@ -103,7 +103,7 @@ public class ImageGridViewAdapter extends BaseAdapter {
 	}
 
 	protected class ViewHolder {
-		public SquareImageView thumbnail;
+		public PicassoImageView thumbnail;
 		public TextView caption;
 	}
 }

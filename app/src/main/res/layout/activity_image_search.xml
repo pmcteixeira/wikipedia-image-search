@@ -35,7 +35,7 @@
 		android:layout_marginTop="@dimen/default_vertical_margin"
 		android:paddingLeft="@dimen/grid_spacing"
 		android:paddingRight="@dimen/grid_spacing"
-		android:numColumns="3"
+		android:numColumns="2"
 		android:verticalSpacing="@dimen/grid_spacing"
 		android:horizontalSpacing="@dimen/grid_spacing"
 		android:stretchMode="columnWidth"

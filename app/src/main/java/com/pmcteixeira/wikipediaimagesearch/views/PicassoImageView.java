@@ -16,17 +16,17 @@ import com.squareup.picasso.Target;
  * Date: 23/01/15
  * Time: 01:58
  */
-public class SquareImageView extends ImageView implements Target {
+public class PicassoImageView extends ImageView implements Target {
 
-	public SquareImageView(Context context) {
+	public PicassoImageView(Context context) {
 		super(context);
 	}
 
-	public SquareImageView(Context context, AttributeSet attrs) {
+	public PicassoImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public SquareImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public PicassoImageView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
@@ -60,11 +60,5 @@ public class SquareImageView extends ImageView implements Target {
 	@Override
 	public void onPrepareLoad(Drawable placeHolderDrawable) {
 		this.setImageResource(R.drawable.placeholder);
-	}
-
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //Snap to width
 	}
 }
